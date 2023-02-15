@@ -2,6 +2,11 @@ const admin = require("./config/firebase-config");
 
 class MiddleWare {
     async decodeToken(req, res, next) {
+
+        if(!req.headers.authorization) {
+            return res.json({ message: "Not authorized" });
+        }
+
         const token = req.headers.authorization.split(" ")[1];
 
         try {
