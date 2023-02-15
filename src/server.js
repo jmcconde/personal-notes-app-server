@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const db = process.env.MONGO_URI;
 const port = process.env.PORT || 5000;
 
-// app.use(middlware.decodeToken);
+app.use(middlware.decodeToken);
  
 app.get("/api/notes", (req, res) => {
     return res.json({
