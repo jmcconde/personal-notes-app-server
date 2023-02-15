@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const db = process.env.MONGO_URI;
+const port = process.env.PORT || 5000;
 
 // app.use(middlware.decodeToken);
  
@@ -82,8 +83,8 @@ app.delete("/api/deleteNote/:id", async (req, res) => {
 const start = async () => {
     try {
         await mongoose.connect(db);
-        app.listen(process.env.PORT || 5000, () => {
-            console.log(`Server is listening on port ${process.env.PORT || 5000}`);
+        app.listen(port, () => {
+            console.log(`Server is listening on port ${port}`);
         });
     } catch (error) {
         console.error(error);
