@@ -18,6 +18,23 @@ const db = process.env.MONGO_URI;
 const port = process.env.PORT || 5000;
 
 app.use(middlware.decodeToken);
+ 
+app.get("/api/notes", (req, res) => {
+    return res.json({
+        notes: [
+            {
+                noteTitle: "Preencher Survey BNP",
+                noteBody:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ex quod non tenetur amet minima modi eum officiis sed, illo libero nisi enim eos dolore, fugit eligendi nulla saepe alias ipsa! Eum commodi, velit porro officiis totam voluptate ipsum natus?",
+            },
+            {
+                noteTitle: "Preencher Survey BNP",
+                noteBody:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos earum sit ratione repellendus iusto facilis voluptatem, libero ipsam ea eaque eos quas autem magni distinctio. Perferendis vitae, qui numquam, similique atque deleniti rerum repellendus, tenetur odio quae suscipit hic molestiae?",
+            },
+        ],
+    });
+});
 
 app.get("/api/userNotes", async (req, res) => {
     const userNotes = await Note.find({ noteUser: req.user.user_id }).sort({updatedAt: -1});
